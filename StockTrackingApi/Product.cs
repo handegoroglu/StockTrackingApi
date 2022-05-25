@@ -1,9 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿ using Newtonsoft.Json;
 using System.Text;
 
 namespace StockTrackingApi
 {
-    public class Product
+    public class ProductObsolate
     {
         //Ürün özellikleriyle ilgili değiskenler oluşturuldu
         public int id { get; set; }
@@ -15,20 +15,20 @@ namespace StockTrackingApi
         public double unitPrice { get; set; }
 
         //Ürünlerin tutulacağı bir liste oluşturuldu
-        List<Product> products { get; set; }
-        public Product()
+        List<ProductObsolate> products { get; set; }
+        public ProductObsolate()
         {
 
-            products = new List<Product>();
+            products = new List<ProductObsolate>();
 
             productGetAllFile();
 
             if(products == null)
-                products = new List<Product>();
+                products = new List<ProductObsolate>();
         }
 
         //Ürünlerin eklenmesi için kullanılan fonksiyon (ürünlerin id'si fonksiyon içerisinde otomatik olarak verilir)
-        public Product add(Product product)
+        public ProductObsolate add(ProductObsolate product)
         {
             if (products.Count() > 0)
             {
@@ -46,11 +46,11 @@ namespace StockTrackingApi
         }
 
         //Listedeki ürünleri ID'lere göre silinme fonksiyonu
-        public Product deleteById(int id)
+        public ProductObsolate deleteById(int id)
         {
             var product = products.FirstOrDefault(product => product.id == id);
             if (product == null)
-                return new Product();
+                return new ProductObsolate();
 
             products.Remove(product);
 
@@ -60,11 +60,11 @@ namespace StockTrackingApi
         }
 
         //Listedeki ürünleri barkodlarına göre silme fonksiyonu
-        public Product deleteByBarcode(string barcode)
+        public ProductObsolate deleteByBarcode(string barcode)
         {
             var product = products.FirstOrDefault(product => product.barcode == barcode);
             if (product == null)
-                return new Product();
+                return new ProductObsolate();
 
             products.Remove(product);
 
@@ -72,8 +72,9 @@ namespace StockTrackingApi
 
             return product;
         }
-        public Product update(Product newProduct)
+        public ProductObsolate update(ProductObsolate newProduct)
         {
+
             var product = products[newProduct.id];
             if (product == null)
                 return newProduct;
@@ -90,11 +91,11 @@ namespace StockTrackingApi
 
             return product;
         }
-        public Product updateByStock(int id, int stock)
+        public ProductObsolate updateByStock(int id, int stock)
         {
             var product = products.FirstOrDefault(i=> i.id==id);
             if (product == null)
-                return new Product();
+                return new ProductObsolate();
             product.stock = stock;
 
             productSaveAllFile();
@@ -102,25 +103,25 @@ namespace StockTrackingApi
             return product;
         }
 
-        public List<Product> GetAllProduct()
+        public List<ProductObsolate> GetAllProduct()
         {
             return products;
         }
-        public Product getProductById(int id)
+        public ProductObsolate getProductById(int id)
         {
 
             var product = products.FirstOrDefault(product => product.id == id);
             if (product == null)
-               return new Product();
+               return new ProductObsolate();
             else 
                 return product;
         }
-        public Product getProductByBarcode(string barcode)
+        public ProductObsolate getProductByBarcode(string barcode)
         {
 
             var product = products.FirstOrDefault(product => product.barcode == barcode);
             if (product == null)
-                return new Product();
+                return new ProductObsolate();
             else
                 return product;
         }
