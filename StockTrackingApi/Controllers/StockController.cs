@@ -136,7 +136,7 @@ namespace StockTrackingApi.Controllers
 
             return Ok(product);
         }
-
+        /*
         [HttpGet]
         [Produces("application/json")]
         [Route("getAllProduct")]
@@ -218,5 +218,6 @@ namespace StockTrackingApi.Controllers
             return new JsonResult(products.updateByStock(id, stock));
 
         }
+        */
     }
 }
